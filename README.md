@@ -14,7 +14,8 @@ This repository contains the submission files for **UNICEF Data and Analytics te
     ├── Consultancy-Assessment.Rproj
     ├── README.md
     ├── renv.lock
-    └── run_project.R
+    ├── run_project.R
+    └── user_Profile.R
 
 ## File and Folder Purposes 
 
@@ -27,11 +28,16 @@ This repository contains the submission files for **UNICEF Data and Analytics te
 - `Consultancy-Assessment.Rproj`  : Keep track of RProject structure
 - `README.md`   : This file. Explains the project directory contents
 - `renv.lock`   : RENV file that keeps track of packages needed
-- `run_project.R` : The main file to automate the production line of reports
+- `run_project.R`   : The main file to automate the production line of reports
+- `user_profile.R`  : Script file to install necessary packages. (See note.)
+
+**Note**: Other users who open this project should be prompted with `renv` and
+all the necessary packages should be downloaded and installed. In case of
+trouble, `user_profile.R` will help with installing the packages manually.
 
 ## Instructions for Reproduing the Analysis
 
-1. Install `renv` package, which will manage the packages used in this project.
-2. Run `renv::restore()` in the R Console to install necessary packages.
-3. Once packages are ready, run `run_project.R` script to reproduce the report.
+1. Set up the environment by following the prompt of `renv`. (Run `renv::restore()`)
+  - In case of any trouble, run `user_profile.R` to install the necessary packages.
+2. Once packages are ready, run `run_project.R` script to reproduce the report.
 4. The report will be generated under `documents` folder.
