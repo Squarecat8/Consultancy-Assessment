@@ -1,0 +1,87 @@
+---
+title: "Report on Care Availability and Mortality Rate Improvements"
+output:
+  html_document:
+    df_print: paged
+date: "2025-07-28"
+---
+
+## Introduction 
+
+```{r}
+#| label: Options
+#| include: false
+#| echo: false
+# Set default options for all subsequent code chunks
+#knitr::opts_chunk$set(tidy = 'styler') # For demonstration (tidyverse style)
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE) # Else
+```
+```{r}
+#| label: setup
+#| error: FALSE
+#| warning: FALSE
+#| message: FALSE
+library(tidyverse)
+library(here)
+```
+
+
+This report is prepared for *the UNICEF Data and Analytics technical evaluation*.
+Its goals are to present a brief analysis of the two measures on the maternal care (antenatal care visits and supported delivery), conditioned on the progress of child mortality rate reduction as set in the Sustainable Development Goals (SDGs).
+Hence, the analysis will inform the policymakers, health care providers, and researchers about the relation between the policy variable (i.e., provision of care) and the outcome (i.e., pace toward the SDG goal).
+
+# Data 
+
+The country-level observations of maternal care accesses are collected from UNICEF Data Warehouse.
+The following two measures are used in the analysis.
+
+1. Share of women (aged 15–49) with at least 4 antenatal care visits (ANC4)
+2. Share of deliveries attended by skilled health personnel (SBA)
+
+In calculating the averages, these country-level observations are weighted by the 2023 population growth estimates obtained from World Population Prospects 2022.
+
+Moreover, the countries are classified into two groups, according to its progress in improving its *under-five mortality rate* goal.
+
+- *On-track* indicates that a country has either *achieved* or *on-track* with the supposed pace in improving its under-five mortality rate.
+- *Off-track* indicates that a country has been classified as *acceleration needed* to achieve the goal.
+
+
+```{r}
+#| label: data
+merged <- readRDS(here("data", "merged.Rds"))
+# Minor changes to the data for later use
+ind_levels <- c("MNCH_ANC4", "MNCH_SAB")
+ind_labels <- c("ANC4 (4+ antenatal care visits)", "SBA (delivery with skilled health personnel)")
+pace_levels <- c("Off-track", "On-track")
+merged <- merged %>% mutate(
+  Indicator = factor(Indicator, levels = ind_levels, labels = ind_labels),
+  Pace = factor(Pace, ordered = TRUE)
+  )
+```
+
+# Analysis 
+
+In the following figure, the weighted averages of maternal care accesses are compared across the two groups of countries.
+It is evident that those which are "on-track" have higher accesses by about 15% and 20% margins for ANC4 and SBA, respectively. 
+
+
+
+```{r}
+# Calculate the average of the measurement values for each indicator, grouped by the status
+mean_both <- merged %>% group_by(Indicator, Pace) %>% 
+  summarise(Mean = weighted.mean(Value, w = Births, na.rm = TRUE)) %>% ungroup()
+# Plot them as bar graphs (per the requirement, they are shown in a single visualization)
+mean_both %>%
+  ggplot(aes(x = Pace, y = Mean)) + geom_bar(stat = "identity") +
+  geom_jitter(data = merged, aes(x = Pace, y = Value)) +
+  facet_wrap(~ Indicator) +
+  xlab("Under-five mortality classification") +
+  ylab("Average shares of women with the cares (%)") +
+  labs(title = "Comparison of maternal care access shares")
+```
+
+
+
+
+# Conclusion 
+
