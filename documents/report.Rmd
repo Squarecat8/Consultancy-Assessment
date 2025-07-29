@@ -62,3 +62,15 @@ mean_both %>%
 
 ...
 
+
+## Notes 
+
+I apply for the following positions:
+
+- **Learning and Skills Data Analyst Consultant**– Req. #581598
+- **Household Survey Data Analyst Consultant**– Req. #581656
+- **Adminisative Data Analyst**– Req. #581696
+- **Microdata Harmonization Consultant**– Req. #581699
+
+The report presents strictly a single visualization and a single paragraph, following the instruction.
+Other sections like introduction or data discussion are omitted.

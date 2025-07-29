@@ -1,6 +1,11 @@
 # Test for Consultancy with the D&A Education Team
 
-This repository contains the submission files for **UNICEF Data and Analytics technical evaluation** for education.
+This repository contains the submission files for **UNICEF Data and Analytics technical evaluation** for education. The positions applied are as follows:
+
+- **Learning and Skills Data Analyst Consultant**– Req. #581598
+- **Household Survey Data Analyst Consultant**– Req. #581656
+- **Adminisative Data Analyst**– Req. #581696
+- **Microdata Harmonization Consultant**– Req. #581699
 
 ## Repository Structure
 
