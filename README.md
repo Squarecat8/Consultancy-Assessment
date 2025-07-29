@@ -22,7 +22,7 @@ This repository contains the submission files for **UNICEF Data and Analytics te
 - `data/`       : Store temporary data files when needed
 - `documents/`  : Store the documents such as reports
 - `plots/`      : Store the plots (graphic files)
-- `renv/`       : Store the local copies of packages locally (not tracked)
+- `renv/`       : Store the local copies of packages locally
 - `scripts/`    : Store the scripts
 - `Consultancy-Assessment.Rproj`  : Keep track of RProject structure
 - `README.md`   : This file. Explains the project directory contents
